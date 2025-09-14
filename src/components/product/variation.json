@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_product_variations",
+  "info": {
+    "displayName": "variation",
+    "icon": "shoppingCart"
+  },
+  "options": {},
+  "attributes": {
+    "attribute": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "salePrice": {
+      "type": "decimal"
+    },
+    "stock": {
+      "type": "integer"
+    },
+    "sku": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}
