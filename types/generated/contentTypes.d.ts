@@ -460,6 +460,41 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiNotificationNotification
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'notifications';
+  info: {
+    displayName: 'Notification';
+    pluralName: 'notifications';
+    singularName: 'notification';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::notification.notification'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    read: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
   collectionName: 'orders';
   info: {
@@ -1048,6 +1083,10 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    notification: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::notification.notification'
+    >;
     order: Schema.Attribute.Relation<'oneToOne', 'api::order.order'>;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
@@ -1086,6 +1125,7 @@ declare module '@strapi/strapi' {
       'api::banner.banner': ApiBannerBanner;
       'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
+      'api::notification.notification': ApiNotificationNotification;
       'api::order.order': ApiOrderOrder;
       'api::product.product': ApiProductProduct;
       'api::vendor.vendor': ApiVendorVendor;

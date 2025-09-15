@@ -71,6 +71,12 @@
       "relation": "oneToOne",
       "target": "api::order.order",
       "mappedBy": "users_permissions_user"
+    },
+    "notification": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::notification.notification",
+      "mappedBy": "users_permissions_user"
     }
   }
 }
